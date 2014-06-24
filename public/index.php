@@ -2,4 +2,4 @@
 
 chdir(dirname(__DIR__));
 
-require('vendor/autoload.php');
+require('_bootstrap.php');

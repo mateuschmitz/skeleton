@@ -7,5 +7,10 @@
 	"require-dev": {
 		"php": ">=5.3.28",
 		"phpdocumentor/phpdocumentor": "2.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Site\\": "module/Site/src/"
+		}
 	}
 }
