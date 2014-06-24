@@ -1,0 +1,11 @@
+{
+	"name": "mateuschmitz/skeleton",
+	"homepage": "http://mateuschmitz.com.br",
+	"require": {
+		"php": ">=5.3.28"
+	},
+	"require-dev": {
+		"php": ">=5.3.28",
+		"phpdocumentor/phpdocumentor": "2.*"
+	}
+}

@@ -1,4 +1,8 @@
 Skeleton
 ========
 
-This is a simples Skeleton for simple applications.
+This is a simple skeleton for simple applications.
+
+
+Instructions
+------------
