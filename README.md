@@ -1,7 +1,7 @@
 Skeleton
 ========
 
-This is a simple skeleton for simple applications.
+Simple skeleton for simple web applications.
 
 
 Instructions
