@@ -1,4 +1,5 @@
 <?php
+
 echo "<pre>";
 define('DS', DIRECTORY_SEPARATOR);
 
@@ -7,9 +8,9 @@ $configData = require('config' . DS . 'config.php');
 
 if (empty($url)) {
 	if ($configData[$configData['default']]['active'] == true) {
-		$moduleData = $configData[$configData['default']];
+		return $configData[$configData['default']];
 	} else {
-		echo 'Erro na configuracao do modulo ' . $configData['default'];
+		return 'Erro na configuracao do modulo ' . $configData['default'];
 	}
 } else {
 	$urlData = explode('/', $url);
@@ -17,12 +18,11 @@ if (empty($url)) {
 
 	if (array_key_exists($module, $configData)) {
 		if ($configData[$module]['active'] == true) {
-			$moduleData = $configData[$module];
+			return $configData[$module];
 		} else {
-			echo 'Erro na configuracao do modulo ' . $urlData[0];
+			return 'Erro na configuracao do modulo ' . $urlData[0];
 		}
 	} else {
-		echo '404';
+		return '404';
 	}
 }
-print_r($moduleData);

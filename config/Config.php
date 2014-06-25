@@ -11,7 +11,7 @@ return array(
 	
 	'Api'  => array(
 		'module' 	  => 'api',
-		'active' 	  => false,
+		'active' 	  => true,
 		)
 	
 	);
