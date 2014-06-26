@@ -1,12 +1,10 @@
 <?php
 
+//change directory
 chdir(dirname(__DIR__));
 
-require('vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
+//_bootsrtap
+require('_bootstrap.php');
 
-$return = require('_bootstrap.php');
-
-$controller = ucfirst($return['module']) . '\Controller\FrontController';
-
-$controller = new $controller;
-$controller->indexAction();
+//run app
+runApplication();

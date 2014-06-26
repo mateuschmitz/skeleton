@@ -7,11 +7,15 @@ return array(
 	'Site' => array(
 		'module' 	  => 'site',
 		'active' 	  => true,
+		'controller'  => 'FrontController',
+		'action'	  => 'indexAction'
 		),
 	
 	'Api'  => array(
 		'module' 	  => 'api',
-		'active' 	  => true,
+		'active' 	  => false,
+		'controller'  => 'FrontController',
+		'action'	  => 'indexAction'
 		)
 	
 	);
