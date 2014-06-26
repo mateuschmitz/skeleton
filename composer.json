@@ -10,8 +10,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Site\\": "module/Site/src/",
-			"Api\\": "module/Api/src/"
+			"Site\\": "app/Site/src/"
 		}
 	}
 }

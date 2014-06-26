@@ -3,8 +3,7 @@
 //change directory
 chdir(dirname(__DIR__));
 
-//_bootsrtap
-require('_bootstrap.php');
+require('vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
 
-//run app
-runApplication();
+//start application
+Site\Controller\FrontController::indexAction();
