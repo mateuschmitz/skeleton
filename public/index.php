@@ -9,4 +9,4 @@ chdir(dirname(__DIR__));
 require('vendor' . DS . 'autoload.php');
 
 //start application
-Site\Controller\FrontController::indexAction();
+Site\Controller\FrontController::startAppAction();
