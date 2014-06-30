@@ -1,38 +1,66 @@
 <?php
 
 return array(
-	
+
 	'index' => array(
-		'route' 	  => '/',
-		'type'        => '',
-		'constraints' => array(
+		'defaults' => array(
 			'namespace'  => 'Site\Controller\\',
 			'controller' => 'IndexController',
-			'action'     => 'indexAction'
+			'action' 	 => 'indexAction'
 			)
 		),
-
-	'user' => array(
-		'route' => '/user/[:username:]',
-		'type'  => '',
+	
+	'user'  => array(
+		'route' 	  => '/user/[:action:]',
 		'constraints' => array(
 			'namespace'  => 'Site\Controller\\',
 			'controller' => 'UserController',
-			'action'     => 'indexAction'
+			'action' 	 => '[:action:]Action'
 			),
-		'params' => array(
-			'numParams' => 1
+		'validations'    => array(
+			'[:action:]' => '[a-zA-Z]'
 			)
 		),
 
-	'login' => array(
-		'route' 	  => '/',
-		'type'        => '',
+	'_default_' => array(
+		'route' 	  => '/[:param:]',
 		'constraints' => array(
 			'namespace'  => 'Site\Controller\\',
-			'controller' => 'IndexController',
-			'action'     => 'indexAction'
+			'controller' => 'UserController',
+			'action' 	 => 'indexAction'
+			),
+		'validations'    => array(
+			'[:param:]' => '[a-zA-Z]'
 			)
-		),
+
+		)
+
+
+
+	// 'index' => array(
+	// 	'route' 	  => '/',
+	// 	'type'        => '',
+	// 	'constraints' => array(
+	// 		'namespace'  => 'Site\Controller\\',
+	// 		'controller' => 'IndexController',
+	// 		'action'     => 'indexAction'
+	// 		)
+	// 	),
+
+	// 'user' => array(
+	// 	'route'		  => '/user/[:username:]',
+	// 	'type'  	  => '',
+	// 	'constraints' => array(
+	// 		'namespace'  => 'Site\Controller\\',
+	// 		'controller' => 'UserController',
+	// 		'action'     => '[a-zA-Z]'
+	// 		),
+	// 	'defaults'    => array(
+	// 		'action'     => 'indexAction'
+	// 		),
+	// 	'params' 	  => array(
+	// 		'numParams' => 1
+	// 		)
+	// 	),
 
 	);

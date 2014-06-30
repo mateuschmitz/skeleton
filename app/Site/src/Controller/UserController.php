@@ -4,20 +4,17 @@ namespace Site\Controller;
 
 class UserController
 {
-	private $_username;
-
 	/**
 	 * 
 	 * 
 	 */
-	public function indexAction($_username = array())
+	public function indexAction()
 	{
-		$this->_username = $_username;
+		echo 'Metodo indexAction';
+	}
 
-		if (empty($this->_username)) {
-			Site\Controller\RouteController::redirectToRoute('default');
-		}
-
-		echo 'Parametro: ' . $this->_username[0];
+	public function addAction()
+	{
+		echo 'Metodo addAction';
 	}
 }

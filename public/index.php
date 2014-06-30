@@ -1,11 +1,9 @@
 <?php
 
-define('DS', DIRECTORY_SEPARATOR);
-define('CONFIG_PATH', 'app' . DS . 'Site' . DS . 'config');
-
 //change directory
 chdir(dirname(__DIR__));
 
+require('bootstrap.php');
 require('vendor' . DS . 'autoload.php');
 
 //start application
