@@ -7,6 +7,9 @@ class RouteController
 	private $_routesConfig;
 	private $_url;
 	private $_urlParams;
+	private $_route;
+	private $_keyRouteAction;
+	private $_keyRouteParam;
 
 	/**
 	 *
@@ -14,13 +17,45 @@ class RouteController
 	public function __construct()
 	{
 		$this->_routesConfig = require(CONFIG_PATH . DS . 'site.routes.php');
-		$this->_urlParams = $this->getUrlParams($_GET['_route_']);
+		$this->_url          = $_GET['_route_'];
+		$this->_urlParams    = $this->getUrlParams($this->_url);
 	}
 
 	/**
 	 *
 	 */
 	public function getRoute()
+	{
+		$this->_route = $this->searchRoute();
+
+		if (preg_match('/(\[:action:])/', $this->_route['route'])) {
+
+			$this->_keyRouteAction = array_search('[:action:]', explode('/', $this->_route['route'])) - 1;
+			preg_match('/' . $this->_route['validations']['[:action:]'] . '/', $this->_urlParams[$this->_keyRouteAction], $matches);
+
+			if ($matches[0]) {
+				$this->_route['route'] = str_replace('[:action:]', $matches[0], $this->_route['route']);
+				$this->_route['constraints']['action'] = str_replace('[:action:]', $matches[0], $this->_route['constraints']['action']);
+			}
+		}
+
+		return $this->_route;
+	}
+
+	/**
+	 *
+	 */
+	private function parseRoute()
+	{
+		//tratamento de action
+		return $this->_urlParams;
+		//tratamento de parâmetros
+	}
+
+	/**
+	 *
+	 */
+	private function searchRoute()
 	{
 		if (empty($this->_urlParams[0])) {
 			return  $this->_routesConfig['index'];
@@ -36,9 +71,9 @@ class RouteController
 	/**
 	 *
 	 */
-	public static function getUrlParams($_url = null)
+	private function getUrlParams()
 	{
-		return explode('/', $_url);
+		return explode('/', $this->_url);
 	}
 
 }

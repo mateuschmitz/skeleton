@@ -1,24 +1,26 @@
 <?php
 
+/**
+ * [:controller:]
+ * [:action:]
+ * [:param:]
+ *
+ * array(
+ *		'namespace'
+ *		'controller'
+ *		'action'
+ *		'params'
+ *		)
+ */
+
 return array(
 
 	'index' => array(
-		'defaults' => array(
+		'route' => '',
+		'default' => array(
 			'namespace'  => 'Site\Controller\\',
 			'controller' => 'IndexController',
 			'action' 	 => 'indexAction'
-			)
-		),
-	
-	'user'  => array(
-		'route' 	  => '/user/[:action:]',
-		'constraints' => array(
-			'namespace'  => 'Site\Controller\\',
-			'controller' => 'UserController',
-			'action' 	 => '[:action:]Action'
-			),
-		'validations'    => array(
-			'[:action:]' => '[a-zA-Z]'
 			)
 		),
 
@@ -30,9 +32,28 @@ return array(
 			'action' 	 => 'indexAction'
 			),
 		'validations'    => array(
-			'[:param:]' => '[a-zA-Z]'
+			'[:param:]' => '([a-zA-Z]*)'
+			),
+		'default' => array(
+			'action' => 'indexAction'
 			)
 
+		),
+
+	'user'  => array(
+		'route' 	  => '/user/[:action:]',
+		'constraints' => array(
+			'namespace'  => 'Site\Controller\\',
+			'controller' => 'UserController',
+			'action' 	 => '[:action:]Action'
+			),
+		'validations'    => array(
+			'type' => '',
+			'[:action:]' => '([a-zA-Z]*)'
+			),
+		'default' => array(
+			'action' => 'indexAction'
+			)
 		)
 
 

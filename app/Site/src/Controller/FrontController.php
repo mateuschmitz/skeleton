@@ -1,6 +1,7 @@
 <?php
 
 namespace Site\Controller;
+
 use Site\Controller\RouteController;
 use Site\Controller\BaseController;
 
@@ -8,8 +9,6 @@ class FrontController extends BaseController
 {
 	private $_router;
 	private $_route;
-	private $_params;
-	private $_controller;
 
 	/**
 	 *
