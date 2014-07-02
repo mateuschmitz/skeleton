@@ -56,32 +56,4 @@ return array(
 			)
 		)
 
-
-
-	// 'index' => array(
-	// 	'route' 	  => '/',
-	// 	'type'        => '',
-	// 	'constraints' => array(
-	// 		'namespace'  => 'Site\Controller\\',
-	// 		'controller' => 'IndexController',
-	// 		'action'     => 'indexAction'
-	// 		)
-	// 	),
-
-	// 'user' => array(
-	// 	'route'		  => '/user/[:username:]',
-	// 	'type'  	  => '',
-	// 	'constraints' => array(
-	// 		'namespace'  => 'Site\Controller\\',
-	// 		'controller' => 'UserController',
-	// 		'action'     => '[a-zA-Z]'
-	// 		),
-	// 	'defaults'    => array(
-	// 		'action'     => 'indexAction'
-	// 		),
-	// 	'params' 	  => array(
-	// 		'numParams' => 1
-	// 		)
-	// 	),
-
 	);

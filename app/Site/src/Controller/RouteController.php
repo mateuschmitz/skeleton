@@ -37,6 +37,19 @@ class RouteController
 				$this->_route['route'] = str_replace('[:action:]', $matches[0], $this->_route['route']);
 				$this->_route['constraints']['action'] = str_replace('[:action:]', $matches[0], $this->_route['constraints']['action']);
 			}
+
+		}
+
+		if (preg_match('/(\[:param:])/', $this->_route['route'])) {
+
+			$this->_keyRouteParam = array_search('[:param:]', explode('/', $this->_route['route'])) - 1;
+			preg_match('/' . $this->_route['validations']['[:param:]'] . '/', $this->_urlParams[$this->_keyRouteParam], $matches);
+
+			if ($matches[0]) {
+				$this->_route['route'] = str_replace('[:param:]', $matches[0], $this->_route['route']);
+				//$this->_route['constraints']['action'] = str_replace('[:action:]', $matches[0], $this->_route['constraints']['action']);
+			}
+
 		}
 
 		return $this->_route;
