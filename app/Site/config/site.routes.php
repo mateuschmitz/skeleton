@@ -1,18 +1,5 @@
 <?php
 
-/**
- * [:controller:]
- * [:action:]
- * [:param:]
- *
- * array(
- *		'namespace'
- *		'controller'
- *		'action'
- *		'params'
- *		)
- */
-
 return array(
 
 	'index' => array(
@@ -48,12 +35,13 @@ return array(
 			'action' 	 => '[:action:]Action'
 			),
 		'validations'    => array(
-			'type' => '',
+			'type' => 'regex',
 			'[:action:]' => '([a-zA-Z]*)'
 			),
 		'default' => array(
 			'action' => 'indexAction'
-			)
+			),
+		''
 		)
 
 	);
