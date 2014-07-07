@@ -7,86 +7,110 @@ class RouteController
 	private $_routesConfig;
 	private $_url;
 	private $_urlParams;
-	private $_route;
+	private $_routeName;
+	private $_routeMatch;
 	private $_keyRouteAction;
 	private $_keyRouteParam;
+	private $_route;
 
-	/**
-	 *
-	 */
-	public function __construct()
+	function __construct()
 	{
-		$this->_routesConfig = require(CONFIG_PATH . DS . 'site.routes.php');
 		$this->_url          = $_GET['_route_'];
-		$this->_urlParams    = $this->getUrlParams($this->_url);
+		$this->_urlParams    = $this->getParamsFromUrl();
 	}
 
 	/**
-	 *
+	 * Retorna a rota a ser utilizada, caso a mesma seja encontrada
+	 * 
+	 * @return array
 	 */
 	public function getRoute()
 	{
-		$this->_route = $this->parseRoute();
+		$this->_routeMatch = $this->searchRoute($this->_urlParams[0]);
 
-		return array(
-			'route'		 => $this->_route['route'],
-			'namespace'	 => $this->_route['constraints']['namespace'],
-			'controller' => $this->_route['constraints']['controller'],
-			'action'	 => $this->_route['constraints']['action'],
-			'default'	 => $this->_route['default']
-			);
-	}
-
-	/**
-	 *
-	 */
-	private function parseRoute()
-	{
-		$this->_route = $this->searchRoute();
-
-		if (preg_match('/(\[:action:])/', $this->_route['route'])) {
-
-			$this->_keyRouteAction = array_search('[:action:]', explode('/', $this->_route['route'])) - 1;
-			preg_match('/' . $this->_route['validations']['[:action:]'] . '/', $this->_urlParams[$this->_keyRouteAction], $matches);
-
-			if ($matches[0]) {
-				$this->_route['constraints']['action'] = str_replace('[:action:]', $matches[0], $this->_route['constraints']['action']);
-			}
-
-		}
-
-		if (preg_match('/(\[:param:])/', $this->_route['route'])) {
-
-			$this->_keyRouteParam = array_search('[:param:]', explode('/', $this->_route['route'])) - 1;
-			preg_match('/' . $this->_route['validations']['[:param:]'] . '/', $this->_urlParams[$this->_keyRouteParam], $matches);
-
+		if ($this->validateRouteElements($this->_routeMatch)) {
+			$this->_route = $this->parseRouteParams($this->_routeMatch);
 		}
 
 		return $this->_route;
 	}
 
 	/**
-	 *
+	 * Retorna array com a url acessada
+	 * 
+	 * @return array 
 	 */
-	private function searchRoute()
-	{
-		if (empty($this->_urlParams[0])) {
-			return  $this->_routesConfig['index'];
-		}
-
-		if (array_key_exists($this->_urlParams[0], $this->_routesConfig)) {
-			return  $this->_routesConfig[$this->_urlParams[0]];
-		}
-
-		return  $this->_routesConfig['_default_'];
-	}
-
-	/**
-	 *
-	 */
-	private function getUrlParams()
+	private function getParamsFromUrl()
 	{
 		return explode('/', $this->_url);
 	}
 
+	/**
+	 * Procura a rota acessada e a retorna, caso encontrada
+	 * 
+	 * @return array
+	 */
+	private function searchRoute($_routeName = null)
+	{
+		$this->_routesConfig = require(CONFIG_PATH . DS . 'site.routes.php');
+		$this->_routeName    = $_routeName;
+
+		if (empty($this->_routeName)) {
+			return $this->_routesConfig['index'];
+		}
+
+		if (array_key_exists($this->_routeName, $this->_routesConfig)) {
+			return $this->_routesConfig[$this->_routeName];
+		}
+
+		return $this->_routesConfig['_default_'];
+	}
+
+	/**
+	 * Valida se a rota acessada atende aos parâmetros da rota definida
+	 * 
+	 * @return bool
+	 */
+	private function validateRouteElements($_routeMatch = array())
+	{
+		if (preg_match('/(\[:action:])/', $_routeMatch['route'])) {
+			
+			$this->_keyRouteAction = array_search('[:action:]', explode('/', $_routeMatch['route'])) - 1;
+			preg_match('/' . $_routeMatch['validations']['[:action:]'] . '/', $this->_urlParams[$this->_keyRouteAction], $matches);
+
+			if (!$matches[0]) {
+				return false;
+			}
+		}
+
+		if (preg_match('/(\[:param:])/', $_routeMatch['route'])) {
+			
+			$this->_keyRouteParam = array_search('[:param:]', explode('/', $_routeMatch['route'])) - 1;
+			preg_match('/' . $_routeMatch['validations']['[:param:]'] . '/', $this->_urlParams[$this->_keyRouteParam], $matches);
+
+			if (!$matches[0]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Define a action e os parâmetros que serão utilizados no Front
+	 * 
+	 * @return array
+	 */
+	private function parseRouteParams($_routeMatch = array())
+	{
+		if (preg_match('/(\[:action:])/', $_routeMatch['route'])) {
+			$_routeMatch['constraints']['action'] = str_replace('[:action:]', $this->_urlParams[$this->_keyRouteAction], $_routeMatch['constraints']['action']);
+		}
+
+		if (preg_match('/(\[:param:])/', $_routeMatch['route'])) {
+			$_routeMatch['param']['param'] = str_replace('[:param:]', $this->_urlParams[$this->_keyRouteParam], $_routeMatch['param']['param']);
+		}
+
+		return $_routeMatch;
+	}
 }

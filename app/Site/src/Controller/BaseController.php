@@ -8,9 +8,23 @@ class BaseController
 	private $_template;
 	private $_view;
 
-	static protected function renderize($_page)
+	/**
+	 * Renderiza a view
+	 * 
+	 * @param string $_page
+	 * @param string $_template
+	 * @return string 
+	 */
+	static protected function renderize($_page, $_template = 'default')
 	{
-		$_view = require('app\Site\src\View\default\\' . $_page . '.phtml');
-		print_r($_view, 1);
+		if (file_exists(VIEW_PATH . DS . $_template . DS . $_page . '.phtml')) {
+			
+			$_view = require(VIEW_PATH . DS . $_template . DS . $_page . '.phtml');
+			print_r($_view, 1);
+
+		} else {
+			
+			echo 'BAD CONFIGURATION';
+		}
 	}
 }

@@ -9,9 +9,11 @@ class FrontController extends BaseController
 {
 	private $_router;
 	private $_route;
+	private $_controller;
+	private $_action;
 
 	/**
-	 *
+	 * Inicia a aplicação
 	 */
 	static public function startAppAction()
 	{
@@ -19,9 +21,22 @@ class FrontController extends BaseController
 		$_route  = $_router->getRoute();
 
 		if ($_route) {
-			echo "<pre>" . print_r($_route, 1);
+			
+			$_controller = $_route['constraints']['namespace'] . $_route['constraints']['controller'];
+			$_controller = new $_controller;
+
+			$_action = method_exists($_controller, $_route['constraints']['action']) ? 
+							$_route['constraints']['action'] : 
+							$_route['default']['action'];
+
+			if (empty($_route['param']['param'])) {
+				$_controller->$_action();
+			} else {
+				$_controller->$_action($_route['param']);
+			}
+
 		} else {
-			BaseController::renderize('errors/404');
+			BaseController::renderize('errors' . DS . '404');
 		}
 	}
 }

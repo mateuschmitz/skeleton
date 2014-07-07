@@ -2,14 +2,14 @@
 
 namespace Site\Controller;
 
-class UserController
+class TesteController
 {
 	public function indexAction($param = array())
 	{
 		if (empty($param)) {
-			echo 'UserController indexAction';
+			echo 'TesteController indexAction';
 		} else {
-			echo 'UserController indexAction<br /><pre>';
+			echo 'TesteController indexAction<br /><pre>';
 			print_r($param);
 		}
 	}

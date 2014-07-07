@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author  Mateus Schmitz <matteuschmitz@gmail.com>
+ * @license undefined
+ */
+
 //change directory
 chdir(dirname(__DIR__));
 

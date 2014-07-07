@@ -1,15 +1,12 @@
 <?php
 
 namespace Site\Controller;
+use Site\Controller\BaseController;
 
-class IndexController
+class IndexController extends BaseController
 {
-	/**
-	 * 
-	 * 
-	 */
 	public function indexAction()
 	{
-		echo 'Pagina Inicial';
+		BaseController::renderize('index');
 	}
 }

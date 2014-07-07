@@ -1,7 +1,3 @@
-Skeleton
-========
+# Skeleton
 
-Simple skeleton for simple web applications.
-
-Instructions
-------------
+**Simple skeleton for simple web applications.**

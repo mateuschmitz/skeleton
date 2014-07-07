@@ -1,10 +1,22 @@
 <?php
 
+/**
+ * Tipos de rotas possíveis
+ *
+ * site.com/
+ * site.com/[:action:]
+ * site.com/[:param:]
+ * site.com/.../[:action:]
+ * site.com/.../[:param:]
+ * site.com/[:action:]/[:param:]
+ *
+ */
+
 return array(
 
 	'index' => array(
 		'route' => '',
-		'default' => array(
+		'constraints' => array(
 			'namespace'  => 'Site\Controller\\',
 			'controller' => 'IndexController',
 			'action' 	 => 'indexAction'
@@ -18,13 +30,12 @@ return array(
 			'controller' => 'UserController',
 			'action' 	 => 'indexAction'
 			),
-		'validations'    => array(
+		'validations' => array(
 			'[:param:]' => '([a-zA-Z]*)'
 			),
-		'default' => array(
-			'action' => 'indexAction'
+		'param'      => array(
+			'param' => '[:param:]'
 			)
-
 		),
 
 	'user'  => array(
@@ -35,13 +46,30 @@ return array(
 			'action' 	 => '[:action:]Action'
 			),
 		'validations'    => array(
-			'type' => 'regex',
 			'[:action:]' => '([a-zA-Z]*)'
 			),
 		'default' => array(
 			'action' => 'indexAction'
+			)
+		),
+
+	'teste'  => array(
+		'route' 	  => '/teste/[:action:]/[:param:]',
+		'constraints' => array(
+			'namespace'  => 'Site\Controller\\',
+			'controller' => 'TesteController',
+			'action' 	 => '[:action:]Action'
 			),
-		''
+		'validations'    => array(
+			'[:action:]' => '([a-zA-Z]*)',
+			'[:param:]' => '([0-9]*)'
+			),
+		'default' => array(
+			'action' => 'indexAction'
+			),
+		'param'      => array(
+			'param' => '[:param:]'
+			)
 		)
 
 	);
