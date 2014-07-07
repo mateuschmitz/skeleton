@@ -2,7 +2,7 @@
 
 namespace Site\Model;
 
-class ViewModel
+class UserModel
 {
 	
 }

@@ -1,16 +1,12 @@
 <?php
 
 namespace Site\Controller;
+use Site\Controller\BaseController;
 
-class TesteController
+class TesteController extends BaseController
 {
 	public function indexAction($param = array())
 	{
-		if (empty($param)) {
-			echo 'TesteController indexAction';
-		} else {
-			echo 'TesteController indexAction<br /><pre>';
-			print_r($param);
-		}
+		BaseController::renderize('teste');
 	}
 }

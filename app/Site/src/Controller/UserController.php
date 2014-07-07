@@ -1,16 +1,13 @@
 <?php
 
 namespace Site\Controller;
+use Site\Controller\BaseController;
+use Site\Model\UserModel;
 
-class UserController
+class UserController extends BaseController
 {
 	public function indexAction($param = array())
 	{
-		if (empty($param)) {
-			echo 'UserController indexAction';
-		} else {
-			echo 'UserController indexAction<br /><pre>';
-			print_r($param);
-		}
+		BaseController::renderize('user');
 	}
 }

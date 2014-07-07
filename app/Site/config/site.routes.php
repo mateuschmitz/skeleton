@@ -1,19 +1,6 @@
 <?php
 
-/**
- * Tipos de rotas possíveis
- *
- * site.com/
- * site.com/[:action:]
- * site.com/[:param:]
- * site.com/.../[:action:]
- * site.com/.../[:param:]
- * site.com/[:action:]/[:param:]
- *
- */
-
 return array(
-
 	'index' => array(
 		'route' => '',
 		'constraints' => array(
@@ -71,5 +58,4 @@ return array(
 			'param' => '[:param:]'
 			)
 		)
-
 	);
