@@ -15,7 +15,7 @@ class BaseController
 	 * @param string $_template
 	 * @return string 
 	 */
-	static protected function renderize($_page, $_template = 'default')
+	static protected function render($_page, $_template = 'default')
 	{
 		if (file_exists(VIEW_PATH . DS . $_template . DS . $_page . '.phtml')) {
 			

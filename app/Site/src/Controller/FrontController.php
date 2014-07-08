@@ -36,7 +36,7 @@ class FrontController extends BaseController
 			}
 
 		} else {
-			BaseController::renderize('errors' . DS . '404');
+			BaseController::render('errors' . DS . '404');
 		}
 	}
 }

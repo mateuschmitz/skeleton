@@ -39,23 +39,4 @@ return array(
 			'action' => 'indexAction'
 			)
 		),
-
-	'teste'  => array(
-		'route' 	  => '/teste/[:action:]/[:param:]',
-		'constraints' => array(
-			'namespace'  => 'Site\Controller\\',
-			'controller' => 'TesteController',
-			'action' 	 => '[:action:]Action'
-			),
-		'validations'    => array(
-			'[:action:]' => '([a-zA-Z]*)',
-			'[:param:]' => '([0-9]*)'
-			),
-		'default' => array(
-			'action' => 'indexAction'
-			),
-		'param'      => array(
-			'param' => '[:param:]'
-			)
-		)
 	);
