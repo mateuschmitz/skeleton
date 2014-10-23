@@ -15,7 +15,7 @@ class RouteController
 
 	function __construct()
 	{
-		$this->_url          = $_GET['_route_'];
+		$this->_url          = isset($_GET['_route_']) ? $_GET['_route_'] : null;
 		$this->_urlParams    = $this->getParamsFromUrl();
 	}
 
