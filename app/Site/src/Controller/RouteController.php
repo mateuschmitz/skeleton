@@ -75,7 +75,12 @@ class RouteController
 	{
 		if (preg_match('/(\[:action:])/', $_routeMatch['route'])) {
 			
-			$this->_keyRouteAction = array_search('[:action:]', explode('/', $_routeMatch['route'])) - 1;
+			if (count($this->_urlParams) > 1) {
+				$this->_keyRouteAction = array_search('[:action:]', explode('/', $_routeMatch['route'])) - 1;
+			} else {
+				$this->_keyRouteAction = array_search('[:action:]', explode('/', $_routeMatch['route'])) - 2;
+			}
+
 			preg_match('/' . $_routeMatch['validations']['[:action:]'] . '/', $this->_urlParams[$this->_keyRouteAction], $matches);
 
 			if (!$matches[0]) {
@@ -85,7 +90,12 @@ class RouteController
 
 		if (preg_match('/(\[:param:])/', $_routeMatch['route'])) {
 			
-			$this->_keyRouteParam = array_search('[:param:]', explode('/', $_routeMatch['route'])) - 1;
+			if (count($this->_urlParams) > 1) {
+				$this->_keyRouteParam = array_search('[:param:]', explode('/', $_routeMatch['route'])) - 1;
+			} else {
+				$this->_keyRouteParam = array_search('[:param:]', explode('/', $_routeMatch['route'])) - 2;
+			}
+
 			preg_match('/' . $_routeMatch['validations']['[:param:]'] . '/', $this->_urlParams[$this->_keyRouteParam], $matches);
 
 			if (!$matches[0]) {
