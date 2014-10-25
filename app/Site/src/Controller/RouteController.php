@@ -52,7 +52,7 @@ class RouteController
 	 */
 	private function searchRoute($_routeName = null)
 	{
-		$this->_routesConfig = require(CONFIG_PATH . DS . 'site.routes.php');
+		$this->_routesConfig = require(CONFIG_PATH . DS . 'Routes.php');
 		$this->_routeName    = $_routeName;
 
 		if (empty($this->_routeName)) {

@@ -4,6 +4,7 @@ namespace Site\Controller;
 
 use Site\Controller\RouteController;
 use Site\Controller\BaseController;
+use Site\Model\View\ViewModel;
 
 class FrontController extends BaseController
 {
@@ -36,7 +37,8 @@ class FrontController extends BaseController
 			}
 
 		} else {
-			BaseController::render('errors' . DS . '404');
+			$view = new ViewModel(false);
+			$view->render('errors/404');
 		}
 	}
 }
