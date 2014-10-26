@@ -1,0 +1,10 @@
+<?php
+
+return array(
+	'name-connection' => array(
+		'host' => 'localhost',
+		'username' => 'root',
+		'password' => 'senha_secreta',
+		'collation' => 'utf-8'
+		)
+	);
