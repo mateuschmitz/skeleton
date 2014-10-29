@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * NÃO APAGUE ESTE ARQUIVO
+ * Ele controla todas as rotas do sistema
+ */
+
 namespace App\Controller;
 
 class RouteController
