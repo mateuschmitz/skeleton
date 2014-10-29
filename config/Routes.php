@@ -14,7 +14,7 @@ return array(
 		'route' 	  => '/[:param:]',
 		'constraints' => array(
 			'namespace'  => 'App\Controller\\',
-			'controller' => 'UserController',
+			'controller' => 'IndexController',
 			'action' 	 => 'indexAction'
 			),
 		'validations' => array(
@@ -22,21 +22,6 @@ return array(
 			),
 		'param'      => array(
 			'param' => '[:param:]'
-			)
-		),
-
-	'user'  => array(
-		'route' 	  => '/user/[:action:]',
-		'constraints' => array(
-			'namespace'  => 'App\Controller\\',
-			'controller' => 'UserController',
-			'action' 	 => '[:action:]Action'
-			),
-		'validations'    => array(
-			'[:action:]' => '([a-zA-Z]*)'
-			),
-		'default' => array(
-			'action' => 'indexAction'
 			)
 		),
 	);

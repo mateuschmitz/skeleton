@@ -6,32 +6,16 @@ use Config\Configuration;
 
 class BaseController
 {
-	// private $_page;
-	// private $_template;
-	// private $_view;
-
-	// /**
-	//  * Renderiza a view
-	//  * 
-	//  * @param string $_page
-	//  * @param string $_template
-	//  * @return string 
-	//  */
-	// static protected function render($_page, $_template = 'default')
-	// {
-	// 	if (file_exists(VIEW_PATH . DS . $_template . DS . $_page . '.phtml')) {
-			
-	// 		$_view = require(VIEW_PATH . DS . $_template . DS . $_page . '.phtml');
-	// 		print_r($_view, 1);
-
-	// 	} else {
-			
-	// 		echo 'BAD CONFIGURATION';
-	// 	}
-	// }
-
-
 	/**
-	 * Configurar chamadas de configurações
+	 * Retorna a conexão solicitada
+	 * @param  string $connectionName Nome da conexão a ser iniciada
+	 * @return object PDO object
 	 */
+	public function getConnection($connectionName = null) {
+		$config = new Configuration;
+		$connection = (is_null($connectionName)) ? $config->beginConnection('teste') :
+									$connection = $config->beginConnection($connectionName);
+
+		return $connection;
+	}
 }
