@@ -8,3 +8,5 @@
 3) Pastas serão definidas dentro das configurações no arquivo Paths.php
 
 4) Entidades serão implementadas
+
+5) Verificar módulos
