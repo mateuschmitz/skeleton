@@ -1,10 +1,10 @@
 <?php
 
-namespace Site\Controller;
+namespace App\Controller;
 
-use Site\Controller\RouteController;
-use Site\Controller\BaseController;
-use Site\Model\View\ViewModel;
+use App\Controller\RouteController;
+use App\Controller\BaseController;
+use App\View\Model\ViewModel;
 
 class FrontController extends BaseController
 {

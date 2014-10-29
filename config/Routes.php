@@ -4,7 +4,7 @@ return array(
 	'index' => array(
 		'route' => '',
 		'constraints' => array(
-			'namespace'  => 'Site\Controller\\',
+			'namespace'  => 'App\Controller\\',
 			'controller' => 'IndexController',
 			'action' 	 => 'indexAction'
 			)
@@ -13,7 +13,7 @@ return array(
 	'_default_' => array(
 		'route' 	  => '/[:param:]',
 		'constraints' => array(
-			'namespace'  => 'Site\Controller\\',
+			'namespace'  => 'App\Controller\\',
 			'controller' => 'UserController',
 			'action' 	 => 'indexAction'
 			),
@@ -28,7 +28,7 @@ return array(
 	'user'  => array(
 		'route' 	  => '/user/[:action:]',
 		'constraints' => array(
-			'namespace'  => 'Site\Controller\\',
+			'namespace'  => 'App\Controller\\',
 			'controller' => 'UserController',
 			'action' 	 => '[:action:]Action'
 			),

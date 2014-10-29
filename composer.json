@@ -10,7 +10,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Site\\": "app/Site/src/",
+			"App\\": "app/src/",
 			"Config\\": "config/"
 		}
 	}

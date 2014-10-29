@@ -1,6 +1,7 @@
 <?php
 
-namespace Site\Controller;
+namespace App\Controller;
+
 use Config\Configuration;
 
 class BaseController

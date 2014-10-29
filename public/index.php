@@ -12,4 +12,4 @@ require('bootstrap.php');
 require('vendor' . DS . 'autoload.php');
 
 //start application
-Site\Controller\FrontController::startAppAction();
+App\Controller\FrontController::startAppAction();

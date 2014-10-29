@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\Model\View;
+namespace App\View\Model;
 
 /**
  * Classe responsável pela renderização das views
@@ -115,7 +115,7 @@ class ViewModel
 	 * @return string
 	 */
 	protected function getLayoutFile () {
-		return require(VIEW_PATH . DS . "_layout" . DS . $this->layout . DS . "layout.phtml");
+		return require(LAYOUT_PATH . DS . $this->layout . DS . "layout.phtml");
 	}
 
 	/**
@@ -123,6 +123,6 @@ class ViewModel
 	 * @return string
 	 */
 	protected function getContentView () {
-		return require(VIEW_PATH . DS . "_layout" . DS . $this->layout . DS . $this->view . ".phtml");
+		return require(LAYOUT_PATH . DS . $this->layout . DS . $this->view . ".phtml");
 	}
 }

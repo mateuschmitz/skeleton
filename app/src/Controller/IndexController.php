@@ -1,8 +1,9 @@
 <?php
 
-namespace Site\Controller;
-use Site\Controller\BaseController;
-use Site\Model\View\ViewModel;
+namespace App\Controller;
+
+use App\Controller\BaseController;
+use App\View\Model\ViewModel;
 
 class IndexController extends BaseController
 {
