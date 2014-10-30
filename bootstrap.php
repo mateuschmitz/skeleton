@@ -2,7 +2,7 @@
 
 define('DS', DIRECTORY_SEPARATOR);
 
-// System Paths
+// // System Paths
 define('ROOT_PATH', 'http://' . $_SERVER['HTTP_HOST']);
 define('CONFIG_PATH', 'config');
 define('VIEW_PATH', 'app' . DS . 'src' . DS . 'View');
