@@ -5,13 +5,13 @@ O objetivo deste projeto é fornecer um esqueleto completo para aplicações web
 
 Índice
 -----
-* [Instalação](#Instalação)
-* [Controllers](#Controllers)
-* [Views](#Views)
-* [Models](#Models)
-* [Configurações](#Configurações)
-* [Rotas](#Rotas)
-* [ToDo](#ToDo)
+* [Instalação](#instalação)
+* [Controllers](#controllers)
+* [Views](#views)
+* [Models](#models)
+* [Configurações](#configurações)
+* [Rotas](#rotas)
+* [ToDo](#todo)
 
 Instalação
 ---------
