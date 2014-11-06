@@ -12,4 +12,5 @@ require('bootstrap.php');
 require('vendor' . DS . 'autoload.php');
 
 //start application
-App\Controller\FrontController::startAppAction();
+// App\Controller\FrontController::startAppAction();
+new M2S\Route\Router;
