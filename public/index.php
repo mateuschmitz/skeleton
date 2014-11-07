@@ -13,4 +13,5 @@ require('vendor' . DS . 'autoload.php');
 
 //start application
 // App\Controller\FrontController::startAppAction();
-new M2S\Route\Router;
+$router = new M2S\Route\Router;
+echo "<pre>" . print_r($router->getRoute(), 1);

@@ -10,30 +10,48 @@ class Router
 	protected $_numUrlParams = null;
 	protected $_routeName    = null;
 	protected $_routeMatch   = null;
+	protected $_route        = null;
 
 	function __construct()
 	{
 		$this->_routesFile = $this->loadRoutesFile();
+	}
+
+	public function getRoute()
+	{
 		$this->_urlParams  = $this->getParamsFromUrl();
 		$this->_routeMatch = $this->searchRoute();
 
-		// var_dump($this->_numUrlParams);
-		// echo "<pre>" . print_r($this->_routeMatch, 1);
-		if ($this->validateRouteParams()) {
-			echo "OK";
-			echo "<pre>" . print_r($this->_routeMatch, 1);
+		$this->_route = array(
+			'route'          => $this->_url,
+			'namespace'      => $this->_routeMatch['constraints']['namespace'],
+			'controller'     => $this->_routeMatch['constraints']['controller'],
+			);
+
+		if ($this->validateAction()) {
+			$this->parseRouteAction();
+			$this->_route['action'] = $this->_routeMatch['constraints']['action'];
 		} else {
-			$this->_routeMatch = $this->_routesFile['_default_'];
-			echo "NOPS";
-			echo "<pre>" . print_r($this->_routeMatch, 1);
+			if (isset($this->_routeMatch['default']['action'])) {
+				$this->_route['action'] = $this->_routeMatch['default']['action'];
+			}
 		}
+
+		if ($this->validateParam()) {
+			$this->parseRouteParam();
+			if (isset($this->_routeMatch['param']['param'])) {
+				$this->_route['param'] = $this->_routeMatch['param']['param'];
+			}
+		}
+
+		if (isset($this->_routeMatch['default']['action'])) {
+			$this->_route['default-action'] = $this->_routeMatch['default']['action'];
+		}
+
+		return $this->_route;
 	}
 
-	function getRoute()
-	{
-	}
-
-	function getParamsFromUrl()
+	protected function getParamsFromUrl()
 	{
 		if (isset($_GET['_route_'])) {
 			$this->_url = $_GET['_route_'];
@@ -50,7 +68,7 @@ class Router
 		return $this->_urlParams;
 	}
 
-	function searchRoute()
+	protected function searchRoute()
 	{
 		if (array_key_exists($this->_routeName, $this->_routesFile)) {
 			return $this->_routesFile[$this->_routeName];
@@ -59,44 +77,58 @@ class Router
 		return $this->_routesFile['_default_'];
 	}
 
-	function validateRouteParams()
-	{	
-		if ($this->_numUrlParams >= count(explode('/', $this->_routeMatch['route'])) - 1) {
+	protected function validateAction()
+	{
+		$_actionPosition = array_search('[:action:]', explode('/', $this->_routeMatch['route'])) - 1;
 
-			$validation = true;
-
-			if (preg_match('/(\[:action:])/', $this->_routeMatch['route'])) {
-				$_actionPosition = array_search('[:action:]', explode('/', $this->_routeMatch['route'])) - 1;
-
-				preg_match_all('/' . $this->_routeMatch['validations']['[:param:]'] . '/', $this->_urlParams[$_actionPosition], $matches);
-
+		if (preg_match('/(\[:action:])/', $this->_routeMatch['route'])) {
+			if (isset($this->_urlParams[$_actionPosition]) && !empty($this->_urlParams[$_actionPosition])) {
+				preg_match_all('/' . $this->_routeMatch['validations']['[:action:]'] . '/', $this->_urlParams[$_actionPosition], $matches);
 				if (empty($matches[0])) {
-					$validation = false;
+					return false;
 				}
+				return true;
 			}
+			return false;
+		}
+		return true;
+	}
 
-			if (preg_match('/(\[:param:])/', $this->_routeMatch['route'])) {
-				$_actionPosition = array_search('[:param:]', explode('/', $this->_routeMatch['route'])) - 1;
+	protected function validateParam()
+	{
+		$_paramPosition = array_search('[:param:]', explode('/', $this->_routeMatch['route'])) - 1;
 
-				preg_match_all('/' . $this->_routeMatch['validations']['[:param:]'] . '/', $this->_urlParams[$_actionPosition], $matches);
-
+		if (preg_match('/(\[:param:])/', $this->_routeMatch['route'])) {
+			if (isset($this->_urlParams[$_paramPosition])  && !empty($this->_urlParams[$_paramPosition])) {
+				preg_match_all('/' . $this->_routeMatch['validations']['[:param:]'] . '/', $this->_urlParams[$_paramPosition], $matches);
 				if (empty($matches[0])) {
-					$validation = false;
+					return false;
 				}
+				return true;
 			}
+			return false;
+		}
+		return true;
+	}
 
-			return $validation;
+	protected function parseRouteAction()
+	{
+		$_actionPosition = array_search('[:action:]', explode('/', $this->_routeMatch['route'])) - 1;
+
+		if (isset($this->_urlParams[$_actionPosition])) {
+			$this->_routeMatch['constraints']['action'] = str_replace('[:action:]', $this->_urlParams[$_actionPosition], $this->_routeMatch['constraints']['action']);
 		}
 	}
 
-	function parseRouteParams()
+	protected function parseRouteParam()
 	{
+		$_paramPosition = array_search('[:param:]', explode('/', $this->_routeMatch['route'])) - 1;
+
+		if (isset($this->_urlParams[$_paramPosition])) {
+			$this->_routeMatch['param']['param'] = str_replace('[:param:]', $this->_urlParams[$_paramPosition], $this->_routeMatch['param']['param']);
+		}
 	}
 
-	/**
-	 * loads routes files(Routes.php) from config path
-	 * @return array return array with routes configured
-	 */
 	protected function loadRoutesFile()
 	{
 		if (file_exists(CONFIG_PATH . DS . 'Routes.php')) {

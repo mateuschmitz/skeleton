@@ -19,7 +19,6 @@ return array(
   		),
   	'validations'    => array(
     	'[:action:]' => '^[a-zA-Z]*$',
-    	// '[:param:]' => '^[0-9]*$'
     	'[:param:]' => '^[a-zA-Z]*$'
   		),
   	'default' => array(
