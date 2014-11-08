@@ -1,10 +1,19 @@
 <?php
 
-namespace App\Controller;
+/**
+ * M2S micro-framework
+ *
+ * @author Mateus Schmitz matteuschmitz@gmail.com
+ * @link https://github.com/mateuschmitz/skeleton
+ * @license undefined
+ * @package Controller
+ */
+
+namespace M2S\Controller;
 
 use Config\Configuration;
 
-class BaseController
+class Controller
 {
 	/**
 	 * Retorna a conexão solicitada

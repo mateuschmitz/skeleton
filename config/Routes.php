@@ -13,7 +13,7 @@ return array(
 	'forum'  => array(
   		'route'     => '/forum/[:action:]/[:param:]',
   		'constraints' => array(
-    	'namespace'  => 'Site\Controller\\',
+    	'namespace'  => 'App\Controller\\',
     	'controller' => 'ForumController',
     	'action'   => '[:action:]Action'
   		),

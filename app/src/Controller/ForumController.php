@@ -16,7 +16,7 @@ use M2S\Controller\Controller;
 /**
  * Classe IndexController
  */
-class IndexController extends Controller
+class ForumController extends Controller
 {
 	/**
 	 * Função default, exibe a home da aplicação
@@ -26,7 +26,7 @@ class IndexController extends Controller
 		// return new ViewModel(true, ['title' => 'Skeleton']);
 		$conn = $this->getConnection();
 
-		echo "IndexController->indexAction";
+		echo "ForumController->indexAction";
 		
 		if (func_num_args() != 0) {
 			echo "<pre>" . print_r(func_get_args(), 1);

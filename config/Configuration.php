@@ -36,7 +36,7 @@ class Configuration
 	 * Carrega o arquivo Databases.php com as configurações de conexões
 	 */
 	protected function loadConnectionFile() {
-		if (file_exists(require('config' . DS . 'Databases.php'))) {
+		if (file_exists('config' . DS . 'Databases.php')) {
 			$this->connections = require('config' . DS . 'Databases.php');
 		}
 	}
