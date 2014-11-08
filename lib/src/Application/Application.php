@@ -11,14 +11,20 @@
 
 namespace M2S\Application;
 
+use M2S\Route\Router;
+
 class Application
 {
-	public function __construct()
-	{
-	}
+	protected $router;
+	protected $route;
+	protected $controller;
+	protected $action;
+	protected $defaultAction;
+	protected $param;
 
 	public static function startApplication()
 	{
-		echo 'FUNFOU';
+		$router = new Router;
+		$route = $router->getRoute();
 	}
 }

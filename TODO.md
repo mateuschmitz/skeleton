@@ -10,3 +10,7 @@
 4) Entidades serão implementadas
 
 5) Verificar módulos
+
+6) Incluir Exceptions
+
+7) Incluir Logs

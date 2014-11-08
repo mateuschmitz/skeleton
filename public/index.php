@@ -5,7 +5,7 @@
  * @license undefined
  */
 
-//change directory
+//altera o diretório relativo
 chdir(dirname(__DIR__));
 
 require('bootstrap.php');
