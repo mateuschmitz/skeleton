@@ -1,16 +1,24 @@
+1) Melhorar sistema de rotas para permitir as seguintes configurações:
 
-1) FrontController será removido e suas atribuições passarão para o bootstrap
+	[/:controller:][/:action:][/:id:]
+	[/:controller:][/:action:][/:slug:]
+	[/:controller:][/:action:]
+	[/:controller:]
+	[/:slug:]
+	[/:id:]
 
-2) Toda requsição passará pelo boostrap:
- 2.1) Verificar melhor forma de o fazer, se através de um arquivo ou classe Bootstrap
- 2.2) Validar uso excessivo de memória
+	/index[/:action:][/:id:]                (index = controller)
+	/index[/:action:]                       (index = controller)
+	/index[/:id:]                           (index = controller)
+	/index                                  (index = controller)
 
-3) Pastas serão definidas dentro das configurações no arquivo Paths.php
+	/index[/:controller:][/:action:][/:id:] (index = módulo)
 
-4) Entidades serão implementadas
 
-5) Verificar módulos
+2) Implementar Entidades e tables
 
-6) Incluir Exceptions
+3) Exception
 
-7) Incluir Logs
+4) Logs
+
+5) verificar questão de módulos

@@ -114,7 +114,7 @@ class Application
 	 * @return boolean Retorna true caso parâmetros estejam ok e
 	 * false caso contrário
 	 */
-	protected function validateRouteParams($route)
+	protected static function validateRouteParams($route)
 	{
 		if (!isset($route['route'])) {
 			return false;
