@@ -14,6 +14,7 @@
 
 	/index[/:controller:][/:action:][/:id:] (index = módulo)
 
+OBS.: Tipos de rotas podem ser definidos em: Segment, Regex e Literal
 
 2) Implementar Entidades e tables
 
