@@ -11,6 +11,8 @@
 
 namespace M2S\Route;
 
+use M2S\Route\Route;
+
 /**
  * Classe responsável por validar as rotas conforme o definido em 'Routes.php'
  */

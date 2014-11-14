@@ -23,3 +23,5 @@ OBS.: Tipos de rotas podem ser definidos em: Segment, Regex e Literal
 4) Logs
 
 5) verificar questão de módulos
+
+6) Incluir rotas de redirect
