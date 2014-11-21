@@ -12,6 +12,8 @@
 namespace App\Controller;
 
 use M2S\Controller\Controller;
+use M2S\View\ViewModel;
+use M2S\Session\SessionHandler;
 
 /**
  * Classe IndexController
@@ -23,13 +25,13 @@ class IndexController extends Controller
 	 */
 	public function indexAction()
 	{
-		// return new ViewModel(true, ['title' => 'Skeleton']);
-		$conn = $this->getConnection();
+		return new ViewModel(true, ['title' => 'Skeleton']);
+		// $conn = $this->getConnection();
 
-		echo "IndexController->indexAction";
+		// echo "IndexController->indexAction";
 		
-		if (func_num_args() != 0) {
-			echo "<pre>" . print_r(func_get_args(), 1);
-		}
+		// if (func_num_args() != 0) {
+		// 	echo "<pre>" . print_r(func_get_args(), 1);
+		// }
 	}
 }
