@@ -30,6 +30,7 @@ class SessionHandler
 	{
 		session_start();
 		$this->id = session_id();
+		return $this;
 	}
 
 	/**
@@ -90,7 +91,7 @@ class SessionHandler
 	public function addInSession($key, $value)
 	{
 		$_SESSION[$key] = $value;
-		$this->
+		return $this;
 	}
 
 	/**

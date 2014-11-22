@@ -13,7 +13,6 @@ namespace App\Controller;
 
 use M2S\Controller\Controller;
 use M2S\View\ViewModel;
-use M2S\Session\SessionHandler;
 
 /**
  * Classe IndexController
@@ -25,7 +24,11 @@ class IndexController extends Controller
 	 */
 	public function indexAction()
 	{
-		return new ViewModel(true, ['title' => 'Skeleton']);
+		if ($this->request->methodIs('get')) {
+			return new ViewModel(true, ['title' => 'Skeleton']);
+		}
+
+		echo "Requisição incorreta";
 		// $conn = $this->getConnection();
 
 		// echo "IndexController->indexAction";

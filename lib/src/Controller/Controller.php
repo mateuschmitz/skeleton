@@ -12,9 +12,21 @@
 namespace M2S\Controller;
 
 use Config\Configuration;
+use M2S\Session\SessionHandler;
+use M2S\Request\RequestHandler;
 
 class Controller
 {
+	/**
+	 * Construtor da class
+	 * Disponibiliza os objetos de request e session
+	 */
+	public function __construct()
+	{
+		$this->session = new SessionHandler;
+		$this->request = new RequestHandler;
+	}
+	
 	/**
 	 * Retorna a conexão solicitada
 	 * @param  string $connectionName Nome da conexão a ser iniciada
