@@ -9,7 +9,7 @@
  * @package Helper
  */
 
-namespace App\Helper;
+namespace M2S\View\Helper;
 
 /**
  * Classe FormHelper
@@ -18,5 +18,10 @@ class FormHelper
 {
 	public function __construct()
 	{
+	}
+
+	public function link($link, $href)
+	{
+		echo "<a href='$href'>$link</a>";
 	}
 }

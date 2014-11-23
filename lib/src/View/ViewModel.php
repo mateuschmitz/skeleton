@@ -44,6 +44,12 @@ class ViewModel
 	protected $contentView;
 
 	/**
+	 * Helpers que serão carregados
+	 * @var array
+	 */
+	protected $helpers = array();
+
+	/**
 	 * construtor da classe
 	 * @param boolean $autoRender Define se a view deve ser auto renderizada ao instanciar a classe
 	 * @param array   $dataView   Dados passados para a view
@@ -101,6 +107,32 @@ class ViewModel
 	public function getLayout() {
 		return $this->layout;
 	}
+
+	/**
+	 * Adiciona novos helpers
+	 * @param array $helper Aceita somente o nome da classe ou o nampespace completo
+	 */
+	public function addHelper($helper)
+	{
+		foreach ($helper as $key => $value) {
+			preg_match('/\\\/', $value, $matches);
+			if (empty($matches)) {
+				$newHelper = "M2S\View\Helper\\" . $value;
+				$this->helpers[] = $newHelper;
+				$this->$key = new $newHelper;
+			} else {
+				$this->helpers[] = $value;
+				$this->$key = new $value;
+			}
+		}
+
+		return $this;
+	}
+
+	// public function getHelper()
+	// {
+	// 	return $this->helpers;
+	// }
 
 	/**
 	 * Retorna o conteúdo da view informada no método render()
