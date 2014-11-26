@@ -25,3 +25,7 @@ OBS.: Tipos de rotas podem ser definidos em: Segment, Regex e Literal
 5) verificar questão de módulos
 
 6) Incluir rotas de redirect
+
+7) Adicionar novo JsonViewModel(mais eficaz e melhor estruturado que o atual)
+
+8) Revisar método ViewModel->element()

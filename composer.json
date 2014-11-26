@@ -11,7 +11,6 @@
 	"autoload": {
 		"psr-4": {
 			"App\\": "app/src/",
-			"M2S\\": "lib/src/",
 			"Config\\": "config/"
 		}
 	}
